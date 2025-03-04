@@ -1,0 +1,205 @@
+//Лабораторная работа №2
+import java.util.Arrays;
+import java.util.Scanner;
+import java.lang.String;
+
+class Main {
+    static Scanner in = new Scanner(System.in);
+
+    public static int mas_sum(int[] mas) {
+        int mas_s = 0;
+        for (int i = 0; i < mas.length; i++) {
+            mas_s += mas[i];
+        }
+        return mas_s;
+    }
+
+    public static void clear_mas(int[] mas) {
+        for (int i = 0; i < mas.length; i++) {
+            mas[i] = 0;
+        }
+    }
+
+    //1. Максимальная подстрока из неповторяющихся символов
+    //2. Объединение отсортированных массивов
+    //3. Максимальная сумма подмассива
+    //4. Повернуть двумерный массив на 90 градусов по ч.с.
+    //5. Пара элементов, сумма которых равна заданному числу
+    //6. Сумма всех элементов в двумерном массиве
+    //7. Максимальный элемент в строчках двумерного массива
+    //8. Повернуть двумерный массив на 90 градусов против ч.с.
+
+    public static String ex_1(String str) {
+        String max_sub = "";
+        boolean m_flag = true;
+        int pointer = 0;
+        while (m_flag) {
+            String cur_sub = "";
+            for (int i = pointer; i < str.length(); i++) {
+                if (cur_sub.contains(String.valueOf(str.charAt(i)))) {
+                    if (max_sub.length() < cur_sub.length()) {
+                        max_sub = cur_sub;
+                    }
+                    pointer++;
+                    break;
+                } else {
+                    cur_sub += str.charAt(i);
+                    if (i == str.length() - 1) // последний элемент
+                    {
+                        if (max_sub.length() < cur_sub.length()) {
+                            max_sub = cur_sub;
+                        }
+                        m_flag = false;
+                    }
+                }
+            }
+        }
+        return max_sub;
+
+    }
+
+    public static int[] ex_2(int[] mas_1, int[] mas_2) {
+        int[] n_mas = new int[mas_1.length + mas_2.length];
+        for (int i = 0; i < mas_1.length; i++) {
+            n_mas[i] = mas_1[i];
+        }
+        for (int j = mas_1.length; j < n_mas.length; j++) {
+            n_mas[j] = mas_2[j - mas_1.length];
+        }
+        Arrays.sort(n_mas);
+        return n_mas;
+    }
+
+    public static int ex_3(int[] mas) {
+        int[] temp_mas = {};
+        int mas_l = mas.length;
+        int temp_summ = 0;
+        int max_summ = Integer.MIN_VALUE;
+        for (int k = 0; k < mas_l; k++) {
+
+
+            for (int step = 2; step <= mas_l; step++) {
+
+                temp_summ = mas[k];
+                for (int i = k + 1; i < step; i++) {
+                    temp_summ = temp_summ + mas[i];
+                }
+                if (max_summ < temp_summ) {max_summ = temp_summ;}
+            }
+        }
+
+
+        return max_summ;
+    }
+
+
+    public static int[][] ex_4(int[][] mas) {
+
+        int strings = mas.length;
+        int columns = mas[0].length;
+        int[][] res = new int[columns][strings];
+
+        for (int i = strings - 1; i >= 0; i--) {
+            for (int j = 0; j < columns; j++) {
+                res[j][strings - i - 1] = mas[i][j];
+            }
+        }
+        return res;
+    }
+
+    public static int[] ex_5(int[] mas, int user_num) {
+        for (int i = 0; i < mas.length; i++)
+            for (int j = 0; j < mas.length; j++)
+                if (i != j) if (mas[i] + mas[j] == user_num) return new int[]{mas[i], mas[j]};
+        return null;
+    }
+    public static int ex_6(int[][] mas) {
+        int sum = 0;
+        for (int[] str: mas)
+            for (int cur_el: str) sum += cur_el;
+        return sum;
+    }
+    public static int[] ex_7(int[][] mas) {
+        int[] res_mas = new int[mas.length];
+        for (int i = 0; i < mas.length; i++)
+        {int max_el = Integer.MIN_VALUE;
+            for (int j = 0; j < mas[i].length; j++)
+            {if (max_el < mas[i][j]) {max_el = mas[i][j];}}
+            res_mas[i] = max_el;
+        }
+        return res_mas;
+    }
+
+    public static int[][] ex_8(int[][] mas) {
+        int str = mas.length;
+        int col = mas[0].length;
+        int[][] res = new int[col][str];
+        for (int i = 0; i < str; i++)
+        {
+            for (int j = col - 1; j >= 0; j--)
+            {res[col - j - 1][i] = mas[i][j];}
+        }
+        return res;
+    }
+        public static void main (String[]args)
+        {
+            //ex1
+            String t_1 = "ABCCCCCCCCCC";
+            System.out.println("Максимальная подстрока из неповторяющихся символов в строке:  " + t_1 + " это:  " + ex_1(t_1));
+            System.out.println();
+            //ex2
+            int[] t_2_a = {1, 2, 3};
+            int[] t_2_b = {4, 5, 6};
+            int[] res = ex_2(t_2_a, t_2_b);
+            System.out.println("Длинна объединенного массива: " + res.length);
+            System.out.println();
+            //ex3
+            int[] t_3 = {-100, 1, -23, 7, 9, -2, 13, 47};
+            System.out.println(ex_3(t_3));
+            System.out.println();
+            //ex4
+            int[][] t_4 = {
+                    {1, 2, 3, 4},
+                    {5, 6, 7, 8},
+                    {9, 10, 11, 12}};
+            int[][] t_4_turn = ex_4(t_4);
+            for (int[] str : t_4_turn) {
+                for (int el : str) {
+                    System.out.print(el + " ");
+                }
+                System.out.println();
+            }
+            System.out.println();
+            //ex5
+            int[] t_5 = {1, 2, 3};
+            int user_num = 5;
+            System.out.println(Arrays.toString(ex_5(t_5, user_num)));
+            System.out.println();
+            //ex6
+            int[][] t_6 = { {1, 2, 3}, {4, 5, 6}};
+            System.out.println(ex_6(t_6));
+            System.out.println();
+            //ex7
+            int[][] t_7 = {
+                    {1, 2, 3, 4},
+                    {5, 6, 7, 8},
+                    {9, 10, 11, 12}};
+            System.out.println(Arrays.toString(ex_7(t_7)));
+            System.out.println();
+            //ex8
+            int[][] t_8 = {
+                    {1, 2, 3, 4},
+                    {5, 6, 7, 8},
+                    {9, 10, 11, 12}};
+            int[][] t_8_turn = ex_8(t_8);
+            for (int[] str : t_8_turn)
+            {
+                for (int el : str) {System.out.print(el + " ");}
+                System.out.println();
+            }
+
+        }
+
+
+
+}
