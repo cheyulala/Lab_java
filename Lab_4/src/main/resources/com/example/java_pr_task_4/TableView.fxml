@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.java_pr_task_4.TableViewController" spacing="10" alignment="CENTER">
+    <TableView fx:id="tableView">
+        <columns>
+            <TableColumn fx:id="brandColumn" text="brand"/>
+            <TableColumn fx:id="year_productionColumn" text="year_production"/>
+            <TableColumn fx:id="model_nameColumn" text="model_name"/>
+            <TableColumn fx:id="statusColumn" text="status"/>
+        </columns>
+    </TableView>
+</VBox>
