@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?import javafx.scene.control.*?>
+<?import javafx.scene.layout.*?>
+
+<VBox xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.java_pr_task_4.MainController" spacing="10" alignment="CENTER" style="-fx-background-color: #80e5ff; -fx-padding: 10; -fx-border-color: #007a99; -fx-border-width: 7; -fx-background-radius: 30;">
+    <TextField fx:id="brandField" promptText="brand" style="-fx-background-color: #ccf5ff; -fx-border-color: #4682b4; -fx-border-radius: 2;" />
+    <TextField fx:id="year_productionField" promptText="year_production" style="-fx-background-color: #ccf5ff; -fx-border-color: #4682b4; -fx-border-radius: 2;" />
+    <TextField fx:id="model_nameField" promptText="model_name" style="-fx-background-color: #ccf5ff; -fx-border-color: #4682b4; -fx-border-radius: 2;" />
+    <TextField fx:id="statusField" promptText="status" style="-fx-background-color: #ccf5ff; -fx-border-color: #4682b4; -fx-border-radius: 2;" />
+    <Button fx:id="addButton" text="Add Car" onAction="#addCar" style="-fx-background-color: #006680; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10;"/>
+    <Button fx:id="showTableButton" text="Show Cars" onAction="#showTable" style="-fx-background-color: #006680; -fx-text-fill: white; -fx-font-size: 14px; -fx-padding: 10;"/>
+</VBox>
